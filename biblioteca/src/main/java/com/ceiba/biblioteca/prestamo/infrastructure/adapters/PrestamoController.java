@@ -2,7 +2,7 @@ package com.ceiba.biblioteca.prestamo.infrastructure.adapters;
 
 import com.ceiba.biblioteca.prestamo.application.PrestamoService;
 import com.ceiba.biblioteca.prestamo.dto.Prestamo;
-import java.util.Map;
+import com.ceiba.biblioteca.prestamo.dto.PrestamoResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,7 +23,7 @@ public class PrestamoController {
   private PrestamoService prestamoService;
 
   @PostMapping
-  private Map<String, Object> save(@Valid @RequestBody Prestamo prestamo) {
+  private PrestamoResponse save(@Valid @RequestBody Prestamo prestamo) {
     return prestamoService.save(prestamo);
   }
 
