@@ -43,6 +43,12 @@ public class Prestamo {
   public Prestamo() {
   }
 
+  public Prestamo(String isbn, String identificacionUsuario, String tipoUsuario) {
+    this.isbn = isbn;
+    this.identificacionUsuario = identificacionUsuario;
+    this.tipoUsuario = tipoUsuario;
+  }
+
   public Long getId() {
     return id;
   }

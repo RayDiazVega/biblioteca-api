@@ -49,6 +49,7 @@ public class PrestamoService {
   }
 
   public Prestamo findById(Long id) {
-    return prestamoRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    return prestamoRepository.findById(id).orElseThrow(
+        () -> new NoSuchElementException("No se encontro prestamo con id ".concat(id.toString())));
   }
 }
