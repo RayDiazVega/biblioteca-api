@@ -17,6 +17,7 @@ public class PrestamoService {
   private PrestamoRepository prestamoRepository;
 
   public PrestamoResponse save(Prestamo prestamo) {
+    validarUsuarioInvitado(prestamo);
     prestamo.setId(0L);
     prestamo.setFechaMaximaDevolucion(calcularFechaMaximaDevolucion(prestamo.getTipoUsuario()));
     prestamo = prestamoRepository.save(prestamo);
@@ -37,7 +38,17 @@ public class PrestamoService {
     return fechaMaximaDevolucion;
   }
 
+  private void validarUsuarioInvitado(Prestamo prestamo) {
+    if (prestamo.getTipoUsuario() == 3) {
+      if (prestamoRepository.existsByIdentificacionUsuario(prestamo.getIdentificacionUsuario())) {
+        throw new IllegalArgumentException(
+            "El usuario con identificación identificacionUsuario ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo".replace(
+                "identificacionUsuario", prestamo.getIdentificacionUsuario()));
+      }
+    }
+  }
+
   public Prestamo findById(Long id) {
-    return prestamoRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+    return prestamoRepository.findById(id).orElseThrow(NoSuchElementException::new);
   }
 }
