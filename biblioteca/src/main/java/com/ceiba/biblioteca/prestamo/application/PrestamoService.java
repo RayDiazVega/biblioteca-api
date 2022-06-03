@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,8 @@ public class PrestamoService {
     return response;
   }
 
-  private LocalDate calcularFechaMaximaDevolucion(String tipoUsuario) {
-    int days = tipoUsuario.equalsIgnoreCase("1") ? 10 : tipoUsuario.equalsIgnoreCase("2") ? 8 : 7;
+  private LocalDate calcularFechaMaximaDevolucion(Long tipoUsuario) {
+    int days = tipoUsuario == 1 ? 10 : tipoUsuario == 2 ? 8 : 7;
     LocalDate fechaMaximaDevolucion = LocalDate.now();
     for (int i = 0; i < days; i++) {
       fechaMaximaDevolucion = fechaMaximaDevolucion.plusDays(1);
@@ -38,5 +39,9 @@ public class PrestamoService {
       }
     }
     return fechaMaximaDevolucion;
+  }
+
+  public Prestamo findById(Long id) {
+    return prestamoRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
   }
 }

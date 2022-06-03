@@ -1,6 +1,7 @@
 package com.ceiba.biblioteca.prestamo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,10 +32,11 @@ public class Prestamo {
 
   @NotNull(message = "tipoUsuario is required")
   @Pattern(regexp = "[123]", message = "Tipo de usuario no permitido en la biblioteca")
+  @JsonFormat(shape = Shape.NUMBER)
   @Column(nullable = false)
   private String tipoUsuario;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+  @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
   @Column(nullable = false)
   private LocalDate fechaMaximaDevolucion;
 
@@ -53,8 +55,8 @@ public class Prestamo {
     return identificacionUsuario;
   }
 
-  public String getTipoUsuario() {
-    return tipoUsuario;
+  public Long getTipoUsuario() {
+    return Long.valueOf(tipoUsuario);
   }
 
   public LocalDate getFechaMaximaDevolucion() {
