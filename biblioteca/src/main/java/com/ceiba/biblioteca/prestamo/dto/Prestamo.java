@@ -20,17 +20,17 @@ public class Prestamo {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NotNull(message = "isbn is required")
-  @Pattern(regexp = "[a-zA-Z\\d]{1,10}", message = "isbn must be a valid value")
+  @NotNull(message = "isbn es obligatorio")
+  @Pattern(regexp = "[a-zA-Z\\d]{1,10}", message = "isbn debe ser un valor valido")
   @Column(nullable = false)
   private String isbn;
 
-  @NotNull(message = "identificaciónUsuario is required")
-  @Pattern(regexp = "[a-zA-Z\\d]{1,10}", message = "identificaciónUsuario must be a valid value")
+  @NotNull(message = "identificaciónUsuario es obligatorio")
+  @Pattern(regexp = "[a-zA-Z\\d]{1,10}", message = "identificaciónUsuario debe ser un valor valido")
   @Column(nullable = false)
   private String identificacionUsuario;
 
-  @NotNull(message = "tipoUsuario is required")
+  @NotNull(message = "tipoUsuario es obligatorio")
   @Pattern(regexp = "[123]", message = "Tipo de usuario no permitido en la biblioteca")
   @JsonFormat(shape = Shape.NUMBER)
   @Column(nullable = false)

@@ -16,9 +16,8 @@ public class RestControllerExceptionHandler {
 
   private String isMethodArgumentNotValidException(Exception ex) {
     if (ex instanceof MethodArgumentNotValidException) {
-      return Objects.requireNonNull(
-              ((MethodArgumentNotValidException) ex).getBindingResult().getFieldError())
-          .getDefaultMessage();
+      return Objects.requireNonNull(((MethodArgumentNotValidException) ex).getBindingResult()
+          .getFieldError()).getDefaultMessage();
     }
     return ex.getMessage();
   }

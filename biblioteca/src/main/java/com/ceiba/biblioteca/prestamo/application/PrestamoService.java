@@ -25,6 +25,16 @@ public class PrestamoService {
         DateTimeFormatter.ofPattern("dd/MM/yyyy")));
   }
 
+  private void validarUsuarioInvitado(Prestamo prestamo) {
+    if (prestamo.getTipoUsuario() == 3) {
+      if (prestamoRepository.existsByIdentificacionUsuario(prestamo.getIdentificacionUsuario())) {
+        throw new IllegalArgumentException(
+            "El usuario con identificación identificacionUsuario ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo".replace(
+                "identificacionUsuario", prestamo.getIdentificacionUsuario()));
+      }
+    }
+  }
+
   private LocalDate calcularFechaMaximaDevolucion(Long tipoUsuario) {
     int days = tipoUsuario == 1 ? 10 : tipoUsuario == 2 ? 8 : 7;
     LocalDate fechaMaximaDevolucion = LocalDate.now();
@@ -36,16 +46,6 @@ public class PrestamoService {
       }
     }
     return fechaMaximaDevolucion;
-  }
-
-  private void validarUsuarioInvitado(Prestamo prestamo) {
-    if (prestamo.getTipoUsuario() == 3) {
-      if (prestamoRepository.existsByIdentificacionUsuario(prestamo.getIdentificacionUsuario())) {
-        throw new IllegalArgumentException(
-            "El usuario con identificación identificacionUsuario ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo".replace(
-                "identificacionUsuario", prestamo.getIdentificacionUsuario()));
-      }
-    }
   }
 
   public Prestamo findById(Long id) {
