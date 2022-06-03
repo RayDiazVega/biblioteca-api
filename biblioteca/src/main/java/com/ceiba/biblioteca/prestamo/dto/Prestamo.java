@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "users")
+@Table(name = "prestamos")
 public class Prestamo {
 
   @Id
@@ -32,9 +32,52 @@ public class Prestamo {
   @NotNull(message = "tipoUsuario is required")
   @Pattern(regexp = "[123]", message = "only values 1, 2 and 3 are allowed for tipoUsuario")
   @Column(nullable = false)
-  private Integer tipoUsuario;
+  private String tipoUsuario;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
   @Column(nullable = false)
   private LocalDate fechaMaximaDevolucion;
+
+  public Prestamo() {
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public String getIdentificacionUsuario() {
+    return identificacionUsuario;
+  }
+
+  public String getTipoUsuario() {
+    return tipoUsuario;
+  }
+
+  public LocalDate getFechaMaximaDevolucion() {
+    return fechaMaximaDevolucion;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setIsbn(String isbn) {
+    this.isbn = isbn;
+  }
+
+  public void setIdentificacionUsuario(String identificacionUsuario) {
+    this.identificacionUsuario = identificacionUsuario;
+  }
+
+  public void setTipoUsuario(String tipoUsuario) {
+    this.tipoUsuario = tipoUsuario;
+  }
+
+  public void setFechaMaximaDevolucion(LocalDate fechaMaximaDevolucion) {
+    this.fechaMaximaDevolucion = fechaMaximaDevolucion;
+  }
 }
