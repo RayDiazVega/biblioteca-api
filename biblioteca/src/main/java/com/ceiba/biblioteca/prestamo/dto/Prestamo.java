@@ -30,7 +30,7 @@ public class Prestamo {
   private String identificacionUsuario;
 
   @NotNull(message = "tipoUsuario is required")
-  @Pattern(regexp = "[123]", message = "only values 1, 2 and 3 are allowed for tipoUsuario")
+  @Pattern(regexp = "[123]", message = "Tipo de usuario no permitido en la biblioteca")
   @Column(nullable = false)
   private String tipoUsuario;
 
