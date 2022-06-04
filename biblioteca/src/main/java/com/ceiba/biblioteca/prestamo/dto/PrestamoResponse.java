@@ -1,15 +1,20 @@
 package com.ceiba.biblioteca.prestamo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import java.time.LocalDate;
+
 public class PrestamoResponse {
 
   private Long id;
 
-  private String fechaMaximaDevolucion;
+  @JsonFormat(shape = Shape.STRING, pattern = "dd/MM/yyyy")
+  private LocalDate fechaMaximaDevolucion;
 
   public PrestamoResponse() {
   }
 
-  public PrestamoResponse(Long id, String fechaMaximaDevolucion) {
+  public PrestamoResponse(Long id, LocalDate fechaMaximaDevolucion) {
     this.id = id;
     this.fechaMaximaDevolucion = fechaMaximaDevolucion;
   }
@@ -18,15 +23,7 @@ public class PrestamoResponse {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getFechaMaximaDevolucion() {
+  public LocalDate getFechaMaximaDevolucion() {
     return fechaMaximaDevolucion;
-  }
-
-  public void setFechaMaximaDevolucion(String fechaMaximaDevolucion) {
-    this.fechaMaximaDevolucion = fechaMaximaDevolucion;
   }
 }

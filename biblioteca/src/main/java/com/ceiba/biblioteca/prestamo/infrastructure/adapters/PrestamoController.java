@@ -22,7 +22,7 @@ public class PrestamoController {
   @Autowired
   private PrestamoService prestamoService;
 
-  @PostMapping
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   private PrestamoResponse save(@Valid @RequestBody Prestamo prestamo) {
     return prestamoService.save(prestamo);
   }

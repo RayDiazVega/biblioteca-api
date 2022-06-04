@@ -25,7 +25,7 @@ public class RestControllerExceptionHandler {
   @ExceptionHandler(value = {IllegalArgumentException.class, MethodArgumentNotValidException.class,
       PropertyReferenceException.class, NoSuchElementException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public Object badRequest(Exception ex) {
+  public PrestamoError badRequest(Exception ex) {
     ex.printStackTrace();
     String error = isMethodArgumentNotValidException(ex);
     return new PrestamoError(error);
@@ -33,8 +33,8 @@ public class RestControllerExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  public Object internalServerError(Exception ex) {
+  public PrestamoError internalServerError(Exception ex) {
     ex.printStackTrace();
-    return new PrestamoError("Server error, ".concat(LocalDateTime.now().toString()));
+    return new PrestamoError("Server error, " + LocalDateTime.now());
   }
 }

@@ -2,7 +2,6 @@ package com.ceiba.biblioteca.prestamo.application;
 
 import com.ceiba.biblioteca.prestamo.dto.Prestamo;
 import com.ceiba.biblioteca.prestamo.dto.PrestamoResponse;
-import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +13,6 @@ class PrestamoServiceTest {
   public static final String USUARIO_AFILIADO = "1";
   public static final String USUARIO_EMPLEADO = "2";
   public static final String USUARIO_INVITADO = "3";
-  public static final String USUARIO_DESCONOCIDO = "4";
 
   @SpyBean
   private PrestamoService prestamoService;
@@ -28,8 +26,7 @@ class PrestamoServiceTest {
 
     Prestamo prestamo = prestamoService.findById(prestamoResponse.getId());
 
-    Assertions.assertEquals(prestamoResponse.getFechaMaximaDevolucion(),
-        prestamo.getFechaMaximaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    Assertions.assertEquals(prestamoResponse.getFechaMaximaDevolucion(), prestamo.getFechaMaximaDevolucion());
   }
 
   @Test
@@ -41,8 +38,7 @@ class PrestamoServiceTest {
 
     Prestamo prestamo = prestamoService.findById(prestamoResponse.getId());
 
-    Assertions.assertEquals(prestamoResponse.getFechaMaximaDevolucion(),
-        prestamo.getFechaMaximaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    Assertions.assertEquals(prestamoResponse.getFechaMaximaDevolucion(), prestamo.getFechaMaximaDevolucion());
   }
 
   @Test
@@ -54,8 +50,7 @@ class PrestamoServiceTest {
 
     Prestamo prestamo = prestamoService.findById(prestamoResponse.getId());
 
-    Assertions.assertEquals(prestamoResponse.getFechaMaximaDevolucion(),
-        prestamo.getFechaMaximaDevolucion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    Assertions.assertEquals(prestamoResponse.getFechaMaximaDevolucion(), prestamo.getFechaMaximaDevolucion());
   }
 
   @Test
